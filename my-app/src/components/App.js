@@ -12,7 +12,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Nav from './Nav';
 
-
 class App extends Component {
   render() {
     return (
