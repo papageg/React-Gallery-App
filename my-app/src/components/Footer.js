@@ -1,4 +1,5 @@
 import React from 'react';
+//import Mailto from 'react-mailto';
 
 
 const Footer = () => (
