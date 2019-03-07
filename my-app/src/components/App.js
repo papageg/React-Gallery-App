@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+// ${apiKey} to use apiKey in url link
 
 
-// import {
-//   BrowserRouter,
-//   // Route,
-//   Switch
-// } from 'react-router-dom';
+
 
 
 import Header from './Header';
 import Footer from './Footer';
 import Nav from './Nav';
+import apiKey from "./Config.js";
+
+const api = apiKey;
+const flkrImages = [];
 
 class App extends Component {
+
   render() {
     return (
-      <div className="container">
-        <Nav />
+      <BrowserRouter>
+        <div className="container">
         <Header />
-        <Footer />
-      </div>
+          <Switch>
+            <Route exact path="/" component={home}
+            <Route path="/soccer" component={soccer}
+            <Route path="/hiking" component={hiking}
+            <Route path="/food" component={food}
+          </Switch>
+          <Nav />
+          <Footer />
+        </div>
+      </BrowserRouter>
    );
   }
 }

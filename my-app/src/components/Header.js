@@ -7,11 +7,15 @@ const Header = () => (
         <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
 
         <nav></nav>
-        {/* <search bar></search bar> */}
         <form>
+              <input type="text" name="text"></input>
+              <input type="submit" name="search"></input>
+            </form>
+        {/* <search bar></search bar> */}
+        {/* <form>
             <input type="text" name="text"></input>
             <input type="submit" name="search"></input>
-        </form>
+        </form> */}
         
     </header>
 );
