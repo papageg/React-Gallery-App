@@ -14,7 +14,7 @@ const Header = () => (
         <button>Soccer</button>
         <button>Hiking</button>
         <button>Food</button>
-        
+
     </header>
 );
 

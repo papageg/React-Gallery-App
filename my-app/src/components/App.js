@@ -25,6 +25,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
+        <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/soccer" component={Soccer} /> 
@@ -32,7 +33,7 @@ class App extends Component {
             <Route path="/food" component={Food} />
             <Route component={NotFound}/>
           </Switch> 
-          <Header />
+          {/* Pictures Here */}
           <Footer />
         </div>
       </BrowserRouter>
