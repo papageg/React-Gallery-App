@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+//
 // ${apiKey} to use apiKey in url link
 
 
@@ -9,11 +9,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
-import Nav from './Nav';
 import apiKey from "./Config.js";
+import Home from './Home';
+import Soccer from './Soccer';
+import Hiking from './Hiking';
+import Food from './Food';
+import NotFound from "./NotFound";
 
 const api = apiKey;
-const flkrImages = [];
+//const flkrImages = [];
 
 class App extends Component {
 
@@ -21,14 +25,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-        <Header />
           <Switch>
-            <Route exact path="/" component={home}
-            <Route path="/soccer" component={soccer}
-            <Route path="/hiking" component={hiking}
-            <Route path="/food" component={food}
-          </Switch>
-          <Nav />
+            <Route exact path="/" component={Home} />
+            <Route path="/soccer" component={Soccer} /> 
+            <Route exact path="/hiking" component={Hiking} />
+            <Route path="/food" component={Food} />
+            <Route component={NotFound}/>
+          </Switch> 
+          <Header />
           <Footer />
         </div>
       </BrowserRouter>
@@ -37,3 +41,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+{/* <Route exact path="/" component={Home} />
+<Route path="/soccer" component={Soccer} />
+<Route path="/hiking" component={Hiking} />
+<Route path="/food" component={Food} /> */}
