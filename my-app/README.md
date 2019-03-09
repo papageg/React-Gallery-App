@@ -1,9 +1,9 @@
 Make sure to set up your Config.js file like the following
 
 ####################################
-const apiKey = '__________';
-const secretKey = '__________';
-export default secretKey;
+const apiKey = '__________';<br>
+const secretKey = '__________';<br>
+export default secretKey;<br>
 export default apiKey;
 ####################################
 
