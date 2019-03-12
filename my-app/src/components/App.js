@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-//
+import axios from 'axios';
 // ${apiKey} to use apiKey in url link
 
 import Header from './Header';
@@ -25,8 +25,13 @@ class App extends Component {
     };
   }
 
+  //"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&sort=relevance&per_page=24&format=json"
   componentDidMount() {
-    fetch("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&sort=relevance&per_page=24&format=json")
+    axios.get()
+      .then(res => {
+        const photo = res.data;
+        this.setState({ photo });
+      })
   }
 
   render() {
