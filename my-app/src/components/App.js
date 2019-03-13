@@ -55,7 +55,7 @@ class App extends Component {
             <Route component={NotFound}/>
           </Switch> 
           {/* Pictures Here */}
-          <Gallery photos= {this.state.photo} />>
+          <Gallery photos={this.state.photo} />>
           <Footer />
         </div>
       </BrowserRouter>
