@@ -26,10 +26,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.homeSearch();
+    this.soccerSearch();
+    
   }
   
-  homeSearch = () => {
+  soccerSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
@@ -39,6 +40,7 @@ class App extends Component {
         console.log('Error fetching and parsing data', error);
       });
   }
+
 
   render() {
     console.log(this.state);
