@@ -1,17 +1,9 @@
 import React from 'react';
-//import apiKey from "./Config.js";
 
-//const api = apiKey;
-// let eachLi = 0;
-
-// for (let i = 0; i < eachLi; i++) {
-//   eachLi.push(i)
-//   console.log(i);
-// }
-const Image = () =>
+const Image = (props) =>
 
   <li>
-    <img src=`https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg`></img>
+    <img src={`https://farm${props.farm-id}.staticflickr.com/${props.server-id}/${props.id}_${props.secret}.jpg`}></img>
   </li>
 
 export default Image;

@@ -15,10 +15,10 @@ renderImages = () => {
         pictures.push(
             <Image 
                 key={i}
-                farm-id={this.props.photo.farm}
-                server-id={this.props.photos.server}
-                id={this.props.photos.id}
-                secret={this.props.photos.secret}
+                farm-id={this.props.photos[i].farm}
+                server-id={this.props.photos[i].server}
+                id={this.props.photos[i].id}
+                secret={this.props.photos[i].secret}
             />
         );
     }
