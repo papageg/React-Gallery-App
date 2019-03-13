@@ -25,12 +25,15 @@ class App extends Component {
     };
   }
 
-  
   componentDidMount() {
+    this.homeSearch();
+  }
+  
+  homeSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => response.json())
+      //.then(response => response.json())
       .then(responseData => {
-        this.setState({ photo: responseData });
+        this.setState({ photo: responseData.photos.photo });
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -38,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(fetch())
+    console.log(this.state);
     return (
       
       <BrowserRouter>
