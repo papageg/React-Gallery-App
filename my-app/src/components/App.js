@@ -31,7 +31,7 @@ class App extends Component {
   
   homeSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
-      //.then(response => response.json())
+      .then(response => response.json())
       .then(responseData => {
         this.setState({ photo: responseData.photos.photo });
       })
@@ -55,7 +55,7 @@ class App extends Component {
             <Route component={NotFound}/>
           </Switch> 
           {/* Pictures Here */}
-          <Gallery />
+          <Gallery photos= {this.state.photo} />>
           <Footer />
         </div>
       </BrowserRouter>

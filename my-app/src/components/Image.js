@@ -8,10 +8,10 @@ import React from 'react';
 //   eachLi.push(i)
 //   console.log(i);
 // }
-const Image = (props) =>
+const Image = () =>
 
   <li>
-    hmm
+    <img src=`https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg`></img>
   </li>
 
 export default Image;

@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import Image from './Image';
 
 class Gallery extends Component {
-    state = {
-        images: 0
-    };
 
 
 // 24 images total
 renderImages = () => {
     let pictures = [];
-    let maxImages = 24;
+    let photos = this.props.photos;
 
-    for (let i = 0; i < maxImages; i++) {
+    //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+
+    for (let i = 0; i < photos.length; i++) {
         pictures.push(
             <Image 
                 key={i}
+                farm-id={this.props.photo.farm}
+                server-id={this.props.photos.server}
+                id={this.props.photos.id}
+                secret={this.props.photos.secret}
             />
         );
     }
