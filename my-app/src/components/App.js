@@ -12,6 +12,7 @@ import Hiking from './Hiking';
 import Food from './Food';
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
+import { isNumberTypeAnnotation } from 'babel-types';
 
 const api = apiKey;
 //const flkrImages = [];
@@ -21,7 +22,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      photo: []
+      photo: [],
+      query: input.value
     };
   }
 
@@ -31,7 +33,7 @@ class App extends Component {
   }
   
   soccerSearch = () => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({ photo: responseData.photos.photo });
