@@ -11,7 +11,7 @@ for (let i = 0; i < eachLi; i++) {
 const Image = (props) =>
 
   <li>
-    {props.eachLi}
+    {props.eachLi}hmm
   </li>
 
 export default Image;
