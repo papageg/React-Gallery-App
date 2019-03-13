@@ -16,9 +16,9 @@ renderImages = () => {
             <Image 
                 key={i}
                 farm-id={this.props.photos[i].farm}
-                server-id={this.props.photos[i].server}
                 id={this.props.photos[i].id}
                 secret={this.props.photos[i].secret}
+                server-id={this.props.photos[i].server}
             />
         );
     }
