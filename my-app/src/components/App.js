@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    console.log()
+    console.log(fetch())
     return (
       
       <BrowserRouter>
