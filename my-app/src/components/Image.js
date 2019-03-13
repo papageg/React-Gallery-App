@@ -1,10 +1,17 @@
 import React from 'react';
+//import apiKey from "./Config.js";
+
+//const api = apiKey;
+let eachLi;
+
+for (let i = 0; i < eachLi; i++) {
+  eachLi.push(i)
+}
 
 const Image = (props) =>
-  // 1. Call the function that updates the rating state each time a list item is clicked
-  // 2. Give the <li> the class 'selected' if it's one of the selected stars
+
   <li>
-    
+    {props.eachLi}
   </li>
 
 export default Image;
