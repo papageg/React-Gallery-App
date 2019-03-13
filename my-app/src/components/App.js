@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 // ${apiKey} to use apiKey in url link
 
 import Header from './Header';
@@ -12,7 +12,6 @@ import Hiking from './Hiking';
 import Food from './Food';
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
-import { assertExpressionStatement } from 'babel-types';
 
 const api = apiKey;
 //const flkrImages = [];
@@ -26,16 +25,22 @@ class App extends Component {
     };
   }
 
-  //"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&sort=relevance&per_page=24&format=json"
+  
   componentDidMount() {
-    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&format=json&nojsoncallback=1&auth_token=72157707532731424-ec62af7a95372b0a&api_sig=8ee6b0b6e96035874d431d369a589c24`)
-      .then(response => console.log(response))
-      //.then(data => console.log(data))
-      
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ photo: responseData });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
   }
 
   render() {
+    console.log()
     return (
+      
       <BrowserRouter>
         <div className="container">
         <Header />
