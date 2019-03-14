@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 //import axios from 'axios';
 // ${apiKey} to use apiKey in url link
 
@@ -25,7 +25,8 @@ class App extends Component {
       general: [],
       hiking: [],
       soccer: [],
-      food: []
+      food: [],
+      query: ''
     };
   }
 
@@ -89,10 +90,10 @@ class App extends Component {
       
       <BrowserRouter>
         <div className="container">
-        <Header search={this.state.search}/>
+        <Header />
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
-            <Route exact path="/"  />} />
+            <Route exact path="/"  />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route exact path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />

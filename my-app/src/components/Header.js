@@ -3,7 +3,8 @@ import logo from '../images/ggw.png';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
-    
+ 
+
     render () {
         return (
             <header>
@@ -27,12 +28,3 @@ class Header extends Component {
     
 };
 export default Header;
-
-
-class Home extends Component {    
-    render() {
-      return (
-       <h2>Home Page</h2>
-     )
-   }
- };
