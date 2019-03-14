@@ -21,9 +21,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      photo: []
+      //photos: [],
+      general: [],
+      hiking: [],
+      soccer: [],
+      food: []
     };
   }
+
+
+  
 
   componentDidMount() {
     this.generalSearch();
@@ -78,21 +85,21 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       
       <BrowserRouter>
         <div className="container">
-        <Header />
+        <Header search={this.state.search}/>
           <Switch>
-            <Route exact path="/" render={ () => <Gallery images={this.state.general} title={'General'} />} />
-            <Route path="/soccer" render={ () => <Gallery images={this.state.soccer} title={'Soccer'} />} /> 
-            <Route exact path="/hiking" render={ () => <Gallery images={this.state.hiking} title={'Hiking'} />} />
-            <Route path="/food" render={ () => <Gallery images={this.state.food} title={'Food'} />} />
+          {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
+            <Route exact path="/"  />} />
+            <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
+            <Route exact path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
+            <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
             <Route component={NotFound}/>
           </Switch> 
           {/* Pictures Here */}
-          <Gallery photos={this.state.photo} />>
+          {/* <Gallery photos={this.state.photo} />> */}
           <Footer />
         </div>
       </BrowserRouter>
