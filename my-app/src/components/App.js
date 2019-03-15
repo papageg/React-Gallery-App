@@ -90,7 +90,7 @@ class App extends Component {
       
       <BrowserRouter>
         <div className="container">
-        <Header />
+        <Header path="/{this.state.query}" />
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/"  />
