@@ -1,35 +1,36 @@
 import React,{ Component } from 'react';
 import logo from '../images/ggw.png';
+import App from "./App";
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-    state = {
-        query: '',
-      }
+    // state = {
+    //     query: '',
+    //   }
 
-    handleInputChange = () => {
-        this.setState({
-          query: this.search.value
-        })
-      }
+    // handleInputChange = () => {
+    //     this.setState({
+    //       query: this.search.value
+    //     })
+    //   }
+
+
 
     render (props) {
-        
+        console.log(this.state.query)
         return (
             <header>
                 <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
-
+                
                 <form>
                     <input
                         placeholder="Search for..."
-                        ref={input => this.search = input}
-                        onChange={this.handleInputChange}
+                        ref={input => props.search = input}
+                        onChange={props.handleInputChange}
                         type="search"
                         ></input>
-                        {/* <p>{this.state.query}</p> */}
-                    {/* <input type="text" name="text"></input> */}
-                    <Link to={this.state.query} ><button>Search</button></Link>       
+                    <Link to={props.query} ><button>Search</button></Link>       
                 </form>
 
                 
