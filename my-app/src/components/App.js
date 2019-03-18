@@ -22,7 +22,7 @@ class App extends Component {
     super();
     this.state = {
       //photos: [],
-      general: [],
+      //general: [],
       hiking: [],
       soccer: [],
       food: [],
@@ -31,15 +31,14 @@ class App extends Component {
   }
 
  ////////////////////////////////////
-  handleInputChange = () => {
+  handleInputChange = (e) => {
     this.setState({
-      query: this.search.value
+      query: e.target.value
     })
   }
 /////////////////////////////////////////
 
   componentDidMount() {
-    this.generalSearch();
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
@@ -96,7 +95,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
         
-        <Header search={this.search} handleInput={this.handleInputChange} query={this.state.query} />
+        <Header api={api} search={this.generalSearch}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
