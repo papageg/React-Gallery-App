@@ -4,14 +4,29 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //       //photos: [],
-    //       general: [],
-    //       query: ''
-    //     }
-    // }
+    constructor() {
+        super();
+        this.state = {
+          query: ''
+        }
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+          query: e.target.value
+        })
+      }
+
+      generalSearch = () => {
+        fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.props.api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
+          .then(response => response.json())
+          .then(responseData => {
+            this.setState({ general: responseData.photos.photo });
+          })
+          .catch(error => {
+            console.log('Error fetching and parsing data', error);
+          });
+      }
 
     render (props) {
         return (
@@ -22,11 +37,11 @@ class Header extends Component {
                     <input
                         placeholder="Search for..."
                         ref={input => this.query = input}
-                        onChange={props.handleInputChange}
+                        onChange={this.handleInputChange}
                         onSubmit={this.handleSubmit}
                         type="search"
                         ></input>
-                    <Link to={this.query} ><button>Search</button></Link>       
+                    <Link to={this.state.query} ><button>Search</button></Link>       
                 </form>
 
                 
