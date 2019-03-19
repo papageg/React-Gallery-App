@@ -22,7 +22,12 @@ class Header extends Component {
         })
       }
 
-      generalSearch = (query) => {
+    handleSubmit = (e) => {
+        e.preventDefault();
+        e.input.reset();
+    }
+
+      generalSearch = () => {
         fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.props.api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
           .then(response => response.json())
           .then(responseData => {
@@ -43,7 +48,7 @@ class Header extends Component {
                         placeholder="Search for..."
                         ref={input => this.state.query = input}
                         onChange={this.handleInputChange}
-                        onSubmit={this.generalSearch}
+                        onSubmit={(e) => this.handleSubmit(e)}
                         type="search"
                         ></input>
                     <Link to={this.state.query} ><button>Search</button></Link>       
