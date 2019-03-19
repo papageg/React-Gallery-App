@@ -7,8 +7,13 @@ class Header extends Component {
     constructor() {
         super();
         this.state = {
-          query: ''
+          query: '',
+          general:[]
         }
+    }
+
+    componentDidMount() {
+        this.generalSearch();
     }
 
     handleInputChange = (e) => {
@@ -17,7 +22,7 @@ class Header extends Component {
         })
       }
 
-      generalSearch = () => {
+      generalSearch = (query) => {
         fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.props.api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
           .then(response => response.json())
           .then(responseData => {
@@ -36,9 +41,9 @@ class Header extends Component {
                 <form>
                     <input
                         placeholder="Search for..."
-                        ref={input => this.query = input}
+                        ref={input => this.state.query = input}
                         onChange={this.handleInputChange}
-                        onSubmit={this.handleSubmit}
+                        onSubmit={this.generalSearch}
                         type="search"
                         ></input>
                     <Link to={this.state.query} ><button>Search</button></Link>       

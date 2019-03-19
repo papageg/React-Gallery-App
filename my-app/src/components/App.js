@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-//import axios from 'axios';
-// ${apiKey} to use apiKey in url link
 
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
-import Home from "./Home";
-//import Soccer from './Soccer';
-//import Hiking from './Hiking';
-//import Food from './Food';
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
 
 const api = apiKey;
-//const flkrImages = [];
 
 class App extends Component {
 
@@ -28,14 +21,6 @@ class App extends Component {
       food: []
     };
   }
-
- ////////////////////////////////////
-  // handleInputChange = (e) => {
-  //   this.setState({
-  //     query: e.target.value
-  //   })
-  // }
-/////////////////////////////////////////
 
   componentDidMount() {
     this.soccerSearch();
@@ -85,7 +70,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
         
-        <Header api={api} handleInputChange={this.handleInputChange} query={this.state.query}/>
+        <Header api={api} />
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
