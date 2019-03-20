@@ -4,54 +4,48 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-          query: '',
-          general:[]
-        }
-    }
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //       query: '',
+    //       general:[]
+    //     }
+    // }
 
-    componentDidMount() {
-        this.generalSearch();
-    }
+    // componentDidMount(props) {
+    //     this.props.generalSearch();
+    // }
 
-    handleInputChange = (e) => {
-        this.setState({
-          query: e.target.value
-        })
-      }
+    // handleInputChange = (e) => {
+    //     this.setState({
+    //       query: e.target.value 
+    //     })
+    //   }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        e.input.reset();
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     e.currentTarget.reset();
+    // }
 
-      generalSearch = () => {
-        fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.props.api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
-          .then(response => response.json())
-          .then(responseData => {
-            this.setState({ general: responseData.photos.photo });
-          })
-          .catch(error => {
-            console.log('Error fetching and parsing data', error);
-          });
-      }
+    
 
-    render (props) {
+    render () {
+      
         return (
+          
             <header>
                 <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
                 
-                <form>
+                <form 
+                  onSubmit={(e) => this.props.handleSubmit(e)}
+                  ref={input => this.query = input}
+                  onChange={this.props.handleInputChange}
+                >
                     <input
                         placeholder="Search for..."
-                        ref={input => this.state.query = input}
-                        onChange={this.handleInputChange}
-                        onSubmit={(e) => this.handleSubmit(e)}
                         type="search"
                         ></input>
-                    <Link to={this.state.query} ><button>Search</button></Link>       
+                    <Link to={this.props.query} ><button>Search</button></Link>       
                 </form>
 
                 
