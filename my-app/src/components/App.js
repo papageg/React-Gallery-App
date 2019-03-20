@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.generalSearch();
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
@@ -93,10 +94,10 @@ class App extends Component {
         
         
           <Switch>
-            <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit}/>
+            <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} query={this.state.query} input={this.input}/>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
-            <Route path={this.state.query} render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  />
+            <Route path="/`${this.state.query}`" render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route exact path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
