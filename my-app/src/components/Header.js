@@ -1,7 +1,6 @@
 import React,{ Component } from 'react';
 import logo from '../images/ggw.png';
-import Gallery from "./Gallery";
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
