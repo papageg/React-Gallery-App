@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
@@ -96,6 +97,7 @@ class App extends Component {
             
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
+            <Route exact path={this.state.query} render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  />
             {/* <Route path={this.state.query} render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  /> */}
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route exact path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />

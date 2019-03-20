@@ -30,7 +30,7 @@ class Header extends Component {
 
     
 
-    render () {
+    render (props) {
       
         return (
           
@@ -46,10 +46,7 @@ class Header extends Component {
                         placeholder="Search for..."
                         type="search"
                         ></input>
-                    <Link to={this.props.query} ><button>Search</button></Link>
-                    <Switch>
-                    <Route path={this.props.query} render={ () => <Gallery photos={this.props.general} title={this.props.query} />}  />
-                    </Switch>       
+                    <Link to={this.props.query} ><button>Search</button></Link>      
                 </form>
 
                 
