@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import logo from '../images/ggw.png';
-import { Link } from 'react-router-dom';
+import Gallery from "./Gallery";
+import { Link, Switch, Route } from 'react-router-dom';
 
 class Header extends Component {
 
@@ -45,7 +46,10 @@ class Header extends Component {
                         placeholder="Search for..."
                         type="search"
                         ></input>
-                    <Link to={this.props.query} ><button>Search</button></Link>       
+                    <Link to={this.props.query} ><button>Search</button></Link>
+                    <Switch>
+                    <Route path={this.props.query} render={ () => <Gallery photos={this.props.general} title={this.props.query} />}  />
+                    </Switch>       
                 </form>
 
                 

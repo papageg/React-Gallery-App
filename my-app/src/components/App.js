@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
@@ -92,12 +91,12 @@ class App extends Component {
       <BrowserRouter>
         <div className="container">
         
-        
+        <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} query={this.state.query} input={this.input} general={this.state.general}/>
           <Switch>
-            <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} query={this.state.query} input={this.input}/>
+            
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
-            <Route path="/`${this.state.query}`" render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  />
+            {/* <Route path={this.state.query} render={ () => <Gallery photos={this.state.general} title={this.state.query} />}  /> */}
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route exact path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
