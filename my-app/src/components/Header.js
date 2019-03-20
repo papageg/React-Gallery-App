@@ -32,7 +32,7 @@ class Header extends Component {
     render (props) {
       
         return (
-          
+            
             <header>
                 <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
                 
@@ -40,12 +40,13 @@ class Header extends Component {
                   onSubmit={(e) => this.props.handleSubmit(e)}
                   ref={input => this.query = input}
                   onChange={this.props.handleInputChange}
+                  
                 >
                     <input
                         placeholder="Search for..."
                         type="search"
                         ></input>
-                    <Link to={this.props.query} ><button>Search</button></Link>      
+                         <Link to={this.props.query} ><button>Search</button></Link> 
                 </form>
 
                 
@@ -53,6 +54,7 @@ class Header extends Component {
                 <Link to="/soccer"><button>Soccer</button></Link>
                 <Link to="/hiking"><button>Hiking</button></Link>
                 <Link to="/food"><button>Food</button></Link>
+                <Link to={this.props.query}><button>{this.props.query}</button></Link>
 
             </header>
         )

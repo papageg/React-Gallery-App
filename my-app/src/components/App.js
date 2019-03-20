@@ -26,11 +26,13 @@ class App extends Component {
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
+    this.generalSearch();
   }
 
   handleInputChange = (e) => {
     this.setState({
       query: e.target.value 
+      
     })
   }
 
@@ -39,11 +41,14 @@ class App extends Component {
     e.currentTarget.reset();
 }
   
-  generalSearch = () => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${this.query}&per_page=24&format=json&nojsoncallback=1`)
+  generalSearch = (query = this.state.query) => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ query: responseData.photos.photo });
+        this.setState({ 
+          general: responseData.photos.photo,
+          loading: false
+         });
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -86,6 +91,7 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.query)
     return (
       
       <BrowserRouter>
@@ -93,7 +99,7 @@ class App extends Component {
         
         <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} input={this.input} general={this.state.general}/>
           <Switch>
-            
+          
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
@@ -102,6 +108,7 @@ class App extends Component {
             <Route path={this.query} render={ () => <Gallery photos={this.state.query} title={this.query} />}  />
             <Route component={NotFound}/>
           </Switch> 
+          
           {/* Pictures Here */}
           {/* <Gallery photos={this.state.photo} />> */}
           <Footer />
