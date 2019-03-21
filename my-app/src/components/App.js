@@ -31,8 +31,7 @@ class App extends Component {
 
   handleInputChange = (e) => {
     this.setState({
-      query: e.target.value 
-      
+      query: e.target.value
     })
   }
 
@@ -41,14 +40,11 @@ class App extends Component {
     e.currentTarget.reset();
 }
   
-  generalSearch = (query = this.state.query) => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  generalSearch = () => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ 
-          general: responseData.photos.photo,
-          loading: false
-         });
+        this.setState({ general: responseData.data });
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -91,7 +87,7 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.query)
+    console.log(this.state.general)
     return (
       
       <BrowserRouter>

@@ -37,16 +37,12 @@ class Header extends Component {
                 <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
                 
                 <form 
-                  onSubmit={(e) => this.props.handleSubmit(e)}
                   ref={input => this.query = input}
-                  onChange={this.props.handleInputChange}
+                  onSubmit={(e) => this.props.handleSubmit(e)}
                   
                 >
-                    <input
-                        placeholder="Search for..."
-                        type="search"
-                        ></input>
-                         <Link to={this.props.query} ><button>Search</button></Link> 
+                    <input placeholder="Search for..." type="search" onChange={this.props.handleInputChange} ></input>
+                    <Link to={this.props.query}><button>Search</button></Link> 
                 </form>
 
                 
