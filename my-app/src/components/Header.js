@@ -4,53 +4,17 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
 
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //       query: '',
-    //       general:[]
-    //     }
-    // }
 
-    // componentDidMount(props) {
-    //     this.props.generalSearch();
-    // }
-
-    // handleInputChange = (e) => {
-    //     this.setState({
-    //       query: e.target.value 
-    //     })
-    //   }
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     e.currentTarget.reset();
-    // }
-
-    
-
-    render (props) {
+    render () {
       
         return (
             
-            <header>
-                <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
-                
-                <form 
-                  ref={input => this.query = input}
-                  onSubmit={(e) => this.props.handleSubmit(e)}
-                  
-                >
-                    <input placeholder="Search for..." type="search" onChange={this.props.handleInputChange} ></input>
-                    <Link to={this.props.query}><button>Search</button></Link> 
-                </form>
-
-                
+            <header>               
                 <Link to="/"><button>Home</button></Link>
                 <Link to="/soccer"><button>Soccer</button></Link>
                 <Link to="/hiking"><button>Hiking</button></Link>
                 <Link to="/food"><button>Food</button></Link>
-                <Link to={this.props.query}><button>{this.props.query}</button></Link>
+
 
             </header>
         )

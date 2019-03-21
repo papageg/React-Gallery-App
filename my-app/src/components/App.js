@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import axios from 'axios'; 
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
+import Search from "./Search";
 
 const api = apiKey;
 
@@ -14,11 +15,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      general: [],
       hiking: [],
       soccer: [],
-      food: [],
-      query: ''
+      food: []
     };
   }
 
@@ -26,30 +25,7 @@ class App extends Component {
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
-    this.generalSearch();
-  }
-
-  handleInputChange = (e) => {
-    this.setState({
-      query: e.target.value
-    })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    e.currentTarget.reset();
-}
-  
-  generalSearch = () => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => response.json())
-      .then(responseData => {
-        this.setState({ general: responseData.data });
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
-  }
+  };
 
 
   soccerSearch = () => {
@@ -87,13 +63,14 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.general)
     return (
       
       <BrowserRouter>
         <div className="container">
         
-        <Header api={api} generalSearch={this.generalSearch} query={this.state.query} handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} input={this.input} general={this.state.general}/>
+        <Search />
+        <Header />
+        
           <Switch>
           
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
@@ -101,7 +78,6 @@ class App extends Component {
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path={this.query} render={ () => <Gallery photos={this.state.query} title={this.query} />}  />
             <Route component={NotFound}/>
           </Switch> 
           
