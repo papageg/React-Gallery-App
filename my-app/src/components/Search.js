@@ -20,7 +20,7 @@ componentDidMount() {
 }
 
  getInfo = () => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=car&per_page=24&format=json&nojsoncallback=1`)
+    fetch(`{https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1}`)
     .then(response => response.json())
     .then(responseData => {
         this.setState({ results: responseData.photos.photo });
@@ -37,21 +37,21 @@ componentDidMount() {
   }
 
  render() {
-  // console.log(this.state.query)
+   console.log(this.state.query)
    return (
-     
     <div>
         <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
         <form>
         <input
             placeholder="Search for..."
             ref={input => this.search = input}
-            onChange={this.handleInputChange}
+            onSubmit={this.handleInputChange}
         />
-        <Switch>
-        <Route path=/${this.state.query} render={ () => <Gallery photos={this.state.results} title={this.state.query} />} />
-        </Switch>
+        <button type='submit' onClick={this.handleInputChange}>Submit</button>
         </form>
+        <Switch>
+        <Route path={this.state.query} render={ () => <Gallery photos={this.state.results} title={this.state.query} />} />
+        </Switch>
      </div>
    );
  }
