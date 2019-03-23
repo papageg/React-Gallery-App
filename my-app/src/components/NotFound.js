@@ -2,7 +2,8 @@ import React from 'react';
 
 const NotFound = () => (
   <div className="main-content not-found">
-    <h2>Page Not Found</h2>
+    <h2>No Results Found</h2>
+    <p>That search did not return any results, please try again.</p>
   </div>
 );
 

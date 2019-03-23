@@ -13,7 +13,7 @@ renderImages = () => {
 
     for (let i = 0; i < photos.length; i++) {
         pictures.push(
-            <Image 
+            <Image
                 key={i}
                 farmId={this.props.photos[i].farm}
                 id={this.props.photos[i].id}
@@ -27,9 +27,11 @@ renderImages = () => {
 
     render() {
         return (
+            <div className="photo-container">
             <ul className='api-render-images'>
                 { this.renderImages() }
             </ul>
+            </div>
         );
     }
 }

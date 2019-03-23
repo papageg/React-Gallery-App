@@ -6,6 +6,7 @@ import Footer from './Footer';
 import apiKey from "./Config";
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
+import '../index.css';
 
 const api = apiKey;
 
@@ -16,7 +17,9 @@ class App extends Component {
     this.state = {
       hiking: [],
       soccer: [],
-      food: []
+      food: [],
+      query: [],
+      hmm: 'beer'
     };
   }
 
@@ -24,6 +27,18 @@ class App extends Component {
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
+    this.querySearch();
+  }
+
+  querySearch = (query = this.state.hmm) => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ query: responseData.photos.photo });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
   }
 
   soccerSearch = () => {
@@ -64,7 +79,7 @@ class App extends Component {
     return (
       
       <BrowserRouter>
-        <div className="container">
+        <div>
         <Header />
           <Switch>
           
@@ -73,13 +88,14 @@ class App extends Component {
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
+            <Route path="/cats" render={ () => <Gallery photos={this.state.query} title={'Query'} />} />
             <Route component={NotFound}/>
           </Switch> 
           
           {/* Pictures Here */}
           {/* <Gallery photos={this.state.photo} />> */}
           <Footer />
-        </div>
+          </div>
       </BrowserRouter>
    );
   }
