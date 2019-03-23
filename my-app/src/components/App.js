@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import axios from 'axios'; 
+
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
 import NotFound from "./NotFound";
 import Gallery from "./Gallery";
-import Search from "./Search";
 
 const api = apiKey;
 
@@ -25,8 +24,7 @@ class App extends Component {
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
-  };
-
+  }
 
   soccerSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
@@ -67,10 +65,7 @@ class App extends Component {
       
       <BrowserRouter>
         <div className="container">
-        
-        <Search />
         <Header />
-        
           <Switch>
           
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
