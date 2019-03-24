@@ -111,7 +111,7 @@ class App extends Component {
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path={this.state.searchTitle} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} display={this.querySearch}/>} />
+            <Route path={this.input} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} />} />
             <Route component={NotFound}/>
           </Switch> 
           
