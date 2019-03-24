@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import Search from './Search';
 import Header from './Header';
 import Footer from './Footer';
 import apiKey from "./Config";
@@ -18,8 +18,10 @@ class App extends Component {
       hiking: [],
       soccer: [],
       food: [],
-      query: [],
-      hmm: 'beer'
+      search: [],
+      searchTitle: ''
+      // searchImage: [],
+      // query: ''
     };
   }
 
@@ -30,16 +32,36 @@ class App extends Component {
     this.querySearch();
   }
 
-  querySearch = (query = this.state.hmm) => {
+  // handleInputChange = () => {
+  //   this.setState({
+  //     query: this.search.value
+  //   })
+  // }
+
+  // querySearch = (query = this.state.query) => {
+  //   fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  //     .then(response => response.json())
+  //     .then(responseData => {
+  //       this.setState({ searchImage: responseData.photos.photo });
+  //     })
+  //     .catch(error => {
+  //       console.log('Error fetching and parsing data', error);
+  //     });
+  // }
+
+  querySearch = (query) => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => response.json())
-      .then(responseData => {
-        this.setState({ query: responseData.photos.photo });
-      })
-      .catch(error => {
+    .then(response => response.json())
+    .then(responseData => {
+        this.setState({ 
+          search: responseData.photos.photo,
+          searchTitle: query
+         });
+    })
+    .catch(error => {
         console.log('Error fetching and parsing data', error);
-      });
-  }
+    });
+}
 
   soccerSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
@@ -76,19 +98,20 @@ class App extends Component {
 
 
   render() {
+    console.log(this.state.searchTitle)
     return (
       
       <BrowserRouter>
         <div>
         <Header />
+        <Search onSearch={this.querySearch}/>
           <Switch>
-          
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path="/cats" render={ () => <Gallery photos={this.state.query} title={'Query'} />} />
+            <Route path={this.state.searchTitle} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} display={this.querySearch}/>} />
             <Route component={NotFound}/>
           </Switch> 
           

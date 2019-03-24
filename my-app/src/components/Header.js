@@ -9,11 +9,13 @@ class Header extends Component {
       
         return (
             <div>  
-                <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>             
-                <Link to="/"><button>Home</button></Link>
-                <Link to="/soccer"><button>Soccer</button></Link>
-                <Link to="/hiking"><button>Hiking</button></Link>
-                <Link to="/food"><button>Food</button></Link>
+                <span className='ggw-logo'><img src={logo} alt="ggw logo"></img></span>
+                <ul>           
+                <Link to="/"><li>Home</li></Link>
+                <Link to="/soccer"><li>Soccer</li></Link>
+                <Link to="/hiking"><li>Hiking</li></Link>
+                <Link to="/food"><li>Food</li></Link>
+                </ul>  
             </div>
         )
     }
