@@ -19,7 +19,7 @@ class App extends Component {
       soccer: [],
       food: [],
       search: [],
-      searchTitle: 'car'
+      searchTitle: ''
       // searchImage: [],
       // query: ''
     };
