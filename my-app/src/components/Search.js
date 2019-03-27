@@ -4,20 +4,30 @@ import Gallery from "./Gallery";
 
 class Search extends Component {
 
-    state = {
-        query: ''
+  constructor() {
+    super();
+    this.state = {
+        query: '',
+        images: []
       }
+    }
      
       handleInputChange = e => {
         this.setState({
-          query: e.target.value
+          query: e.target.value,
+          images: this.handleSubmit
         })
       }
 
       handleSubmit = e => {
           e.preventDefault();
-          this.props.onSearch(this.state.query.value);
+          this.props.onSearch(this.state.query);
+          let path= `/search/${this.query.value}`;
           e.currentTarget.reset();
+      }
+
+      componentDidMount() {
+        this.props.onSearch();
       }
       
     render() {
@@ -42,7 +52,7 @@ class Search extends Component {
                 <BrowserRouter>
             <div>
             <Switch>
-            <Route path={this.state.query} render={ () => <Gallery photos={this.props.search} title={this.state.query} />} />
+            <Route  exact path={this.state.query} render={ () => <Gallery photos={this.props.onSearch} title={this.state.query} />} />
             </Switch>
             </div>
             </BrowserRouter>
