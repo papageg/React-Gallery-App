@@ -19,12 +19,11 @@ class App extends Component {
       soccer: [],
       food: [],
       search: [],
-      searchTitle: ''
+      searchTitle: 'car'
       // searchImage: [],
       // query: ''
     };
   }
-
   componentDidMount() {
     this.soccerSearch();
     this.hikingSearch();
@@ -49,7 +48,8 @@ class App extends Component {
   //     });
   // }
 
-  querySearch = (query) => {
+
+  querySearch = (query= this.state.searchTitle) => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
     .then(responseData => {
@@ -103,15 +103,15 @@ class App extends Component {
       
       <BrowserRouter>
         <div>
-        <Header />
-        <Search onSearch={this.querySearch}/>
+        <Header/>
+        <Search onSearch={this.querySearch} search={this.state.search}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path={this.input} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} />} />
+            <Route exact path="/car" render={ () => <Gallery photos={this.state.search} title={'Car'} />} />
             <Route component={NotFound}/>
           </Switch> 
           
