@@ -107,11 +107,11 @@ class App extends Component {
         <Search onSearch={this.querySearch}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
-            <Route exact path="/" render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} />}/>
+            <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            {/* <Route path={this.input} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} />} /> */}
+            <Route path={this.input} render={ () => <Gallery photos={this.state.search} title={this.state.searchTitle} />} />
             <Route component={NotFound}/>
           </Switch> 
           
