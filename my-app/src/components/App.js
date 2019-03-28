@@ -30,7 +30,7 @@ class App extends Component {
   }
 
 
-  querySearch = (query = 'cats') => {
+  querySearch = (query = "cats") => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
       .then(responseData => {
@@ -87,11 +87,11 @@ class App extends Component {
         <Search onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
-            <Route exact path="/" />
+            {/* <Route exact path="/" /> */}
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path="/search" render={ () => <Gallery photos={this.state.search} title={'Searched'} />} /> */}
+            <Route exact path="/" render={ () => <Gallery photos={this.state.search} title={'Searched'} />} />
             <Route component={NotFound}/>
           </Switch> 
           
