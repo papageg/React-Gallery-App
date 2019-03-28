@@ -18,52 +18,29 @@ class App extends Component {
       hiking: [],
       soccer: [],
       food: [],
-      search: [],
-      // searchImage: [],
-      query: 'dog'
+      search: []
+      // query: ''
     };
   }
   componentDidMount() {
     this.soccerSearch();
     this.hikingSearch();
     this.foodSearch();
+    this.querySearch();
   }
 
-  // handleInputChange = () => {
-  //   this.setState({
-  //     query: this.search.value
-  //   })
-  // }
 
-  // querySearch = (query = this.state.query) => {
-  //   fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-  //     .then(response => response.json())
-  //     .then(responseData => {
-  //       this.setState({ searchImage: responseData.photos.photo });
-  //     })
-  //     .catch(error => {
-  //       console.log('Error fetching and parsing data', error);
-  //     });
-  // }
-
-  ///////////////////////
-
-  
-  ///////////////////////
-
-
-
-  querySearch = () => {
-    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${this.state.query}&per_page=24&format=json&nojsoncallback=1`)
+  querySearch = (query = 'cats') => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
-    .then(responseData => {
-        this.setState({ 
-          search: responseData.photos.photo
-         });
-    })
-    .catch(error => {
-        console.log('Error fetching and parsing data', error);
-    });
+      .then(responseData => {
+          this.setState({ 
+            search: responseData.photos.photo
+          });
+      })
+      .catch(error => {
+          console.log('Error fetching and parsing data', error);
+      });
 }
 
   soccerSearch = () => {
@@ -101,20 +78,20 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.query)
+    console.log(this.state.search)
     return (
       
       <BrowserRouter>
         <div>
         <Header/>
-        <Search onSearch={this.querySearch} search={this.state.search}/>
+        <Search onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route exact path="/:id" render={ () => <Gallery photos={this.state.search} title={this.state.query} />} />
+            <Route path="/search" render={ () => <Gallery photos={this.state.search} title={'Searched'} />} /> */}
             <Route component={NotFound}/>
           </Switch> 
           
