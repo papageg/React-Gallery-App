@@ -80,23 +80,19 @@ class App extends Component {
   render() {
     console.log(this.state.search)
     return (
-      
       <BrowserRouter>
         <div>
         <Header/>
         <Search onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
-            {/* <Route exact path="/" /> */}
+            <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route exact path="/" render={ () => <Gallery photos={this.state.search} title={'Searched'} />} />
+            <Route path="/search" render={ () => <Gallery photos={this.state.search} title={'Searched'} />} />
             <Route component={NotFound}/>
-          </Switch> 
-          
-          {/* Pictures Here */}
-          {/* <Gallery photos={this.state.photo} />> */}
+          </Switch>
           <Footer />
           </div>
       </BrowserRouter>
