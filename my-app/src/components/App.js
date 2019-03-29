@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import Search from './Search';
 import Header from './Header';
 import Footer from './Footer';
@@ -9,6 +10,7 @@ import Gallery from "./Gallery";
 import '../index.css';
 
 const api = apiKey;
+const url = createBrowserHistory();
 
 class App extends Component {
 
@@ -30,7 +32,7 @@ class App extends Component {
   }
 
 
-  querySearch = (query = "cats") => {
+  querySearch = (query = 'dog') => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
       .then(responseData => {
@@ -78,12 +80,11 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.search)
     return (
       <BrowserRouter>
         <div>
         <Header/>
-        <Search onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
+        <Search url={url} onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
