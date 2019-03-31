@@ -15,13 +15,14 @@ class Search extends Component {
       e.preventDefault();
       this.props.onSearch(this.query.value);
       e.currentTarget.reset();
-      this.props.url.push(`/search/${this.state.searchText}`);
+      this.props.url.push(`/search`);
     }
 
 
     render() {
+      console.log()
         return(
-           <form className="search-form" onSubmit={this.handleSubmit} onSubmit={this.onSearchChange}> 
+           <form className="search-form" onSubmit={this.handleSubmit} onClick={this.onSearchChange}> 
                 <input type="search" 
                         name="search" 
                         ref={(input) =>this.query = input}
