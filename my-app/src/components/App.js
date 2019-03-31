@@ -20,8 +20,8 @@ class App extends Component {
       hiking: [],
       soccer: [],
       food: [],
-      search: []
-      // query: ''
+      search: [],
+      id: ''
     };
   }
   componentDidMount() {
@@ -32,12 +32,13 @@ class App extends Component {
   }
 
 
-  querySearch = (query = 'dog') => {
+  querySearch = (query) => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => response.json())
       .then(responseData => {
           this.setState({ 
-            search: responseData.photos.photo
+            search: responseData.photos.photo,
+            id: query
           });
       })
       .catch(error => {
@@ -80,6 +81,7 @@ class App extends Component {
 
 
   render() {
+    console.log('/search/{this.state.id}')
     return (
       <BrowserRouter>
         <div>
@@ -91,7 +93,7 @@ class App extends Component {
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path="/search/poo" render={ () => <Gallery photos={this.state.search} title={'Search'} />} />
+            <Route path="/search/:id" render={ () => <Gallery photos={this.state.search} title={'Search'} />} />
             <Route component={NotFound}/>
           </Switch>
           <Footer />

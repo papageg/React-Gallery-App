@@ -4,18 +4,19 @@ import React, { Component } from 'react';
 class Search extends Component {
 
     state = {
-      searchtext: ''
+      searchText: ''
     }
 
     onSearchChange = e => {
       this.setState({ searchText: e.target.value })
+      this.props.url.push(`/search/${this.query.value}`);
     }
 
     handleSubmit = e => {
       e.preventDefault();
       this.props.onSearch(this.query.value);
       e.currentTarget.reset();
-      this.props.url.push("/search/poo");
+     
     }
 
 
