@@ -20,8 +20,7 @@ class App extends Component {
       hiking: [],
       soccer: [],
       food: [],
-      search: [],
-      id: ''
+      search: []
     };
   }
   componentDidMount() {
@@ -37,8 +36,7 @@ class App extends Component {
     .then(response => response.json())
       .then(responseData => {
           this.setState({ 
-            search: responseData.photos.photo,
-            id: query
+            search: responseData.photos.photo
           });
       })
       .catch(error => {
@@ -81,7 +79,7 @@ class App extends Component {
 
 
   render() {
-    console.log('/search/{this.state.id}')
+    console.log(this.state.search)
     return (
       <BrowserRouter>
         <div>
@@ -93,7 +91,7 @@ class App extends Component {
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path="/search/:id" render={ () => <Gallery photos={this.state.search} title={'Search'} />} />
+            <Route path={"/search/:id"} render={ () => <Gallery photos={this.state.search} title={'Search'} />} />
             <Route component={NotFound}/>
           </Switch>
           <Footer />
