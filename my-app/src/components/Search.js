@@ -10,6 +10,7 @@ class Search extends Component {
     onSearchChange = e => {
       this.setState({ searchText: e.target.value })
       this.props.url.push(`/search/${this.query.value}`);
+      this.props.url.go();
     }
 
     handleSubmit = e => {

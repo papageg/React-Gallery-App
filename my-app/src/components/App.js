@@ -10,7 +10,7 @@ import Gallery from "./Gallery";
 import '../index.css';
 
 const api = apiKey;
-const url = createBrowserHistory();
+const url = createBrowserHistory({forceRefresh:true});
 
 class App extends Component {
 
@@ -20,7 +20,8 @@ class App extends Component {
       hiking: [],
       soccer: [],
       food: [],
-      search: []
+      search: [],
+      idName: ''
     };
   }
   componentDidMount() {
