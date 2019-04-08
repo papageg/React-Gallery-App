@@ -84,14 +84,14 @@ class App extends Component {
       <BrowserRouter>
         <div>
         <Header/>
-        <Search url={url} onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
+        <Search url={url} onSearch={this.querySearch} image={this.state.search} query={this.state.query} />
           <Switch>
           {/* render={ () => <Gallery photos={this.state.general} title={'General'} */}
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path={"/search/:id"} render={ () => <Gallery photos={this.state.search} title={'Search'} />} />
+            {/* <Route path={"/search/:id"} render={ () => <Gallery photos={this.state.search} title={'Search'} />} /> */}
             <Route component={NotFound}/>
           </Switch>
           <Footer />
