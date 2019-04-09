@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import Gallery from './Gallery'
+// import Gallery from './Gallery'
 // import apiKey from "./Config";
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 
 // const api = apiKey;
 
@@ -14,19 +14,17 @@ class Search extends Component {
 
   onSearchChange = e => {
     this.setState({ searchText: e.target.value })
-    this.props.url.go();
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.state.searchText);
-    this.props.url.push(`/search/${this.query.value}`);
+    this.props.onSearch(this.query.value);
+    // this.props.url.push(`/search/${this.query.value}`);
     e.currentTarget.reset();
   }
 
 
   render() {
-    console.log(this.state.search)
       return(
          <form className="search-form"> 
               <input type="text"
@@ -42,7 +40,7 @@ class Search extends Component {
                 </svg>
               </button>
               {/* <Suggestions results={this.state.results} /> */}
-              <Route path={this.state.query} render={ () => <Gallery photos={this.state.peoples} title={'Search'} />} />
+              {/* <Route path={this.state.query} render={ () => <Gallery photos={this.state.peoples} title={'Search'} />} /> */}
           </form>   
 
  
