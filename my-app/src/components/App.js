@@ -19,7 +19,8 @@ class App extends Component {
     this.state = {
       soccer: [],
       hiking: [],
-      food: []
+      food: [],
+      images: []
     };
   }
   componentDidMount() {
@@ -28,16 +29,16 @@ class App extends Component {
     this.foodSearch();
   }
 
-  //   imageArray = (query) => {
-  //   fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-  //     .then(response => response.json())
-  //     .then(responseData => {
-  //       this.setState({ images: responseData.photos.photo });
-  //     })
-  //     .catch(error => {
-  //       console.log('Error fetching and parsing data', error);
-  //     });
-  // }
+    imageArray = (query) => {
+    fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => response.json())
+      .then(responseData => {
+        this.setState({ images: responseData.photos.photo });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+  }
 
 
 //   querySearch = (query) => {
@@ -92,12 +93,13 @@ class App extends Component {
       <BrowserRouter>
         <div>
         <Header/>
-        <Search url={url} onSearch={this.querySearch} image={this.state.search} query={this.state.query}/>
+        <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
           <Switch>
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
+            <Route path="/?" render={ () => <Gallery photos={this.state.images} title={'Food'} />} />
             <Route component={NotFound}/>
           </Switch>
           <Footer />
