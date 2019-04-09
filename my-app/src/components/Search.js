@@ -11,7 +11,7 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-    searchText: ''
+    searchText: 'fish'
   }
 }
 
@@ -23,7 +23,7 @@ class Search extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(e.target.value);
+    this.props.onSearch(this.state.searchText);
     this.setState({ searchText: e.target.value })
     // this.props.url.push(`/search/${this.query.value}`);
     e.currentTarget.reset();
@@ -31,7 +31,7 @@ class Search extends Component {
 
 
   render() {
-    console.log(this.state.searchText)
+    console.log(this.input)
       return(
          <form className="search-form"> 
               <input type="text"
