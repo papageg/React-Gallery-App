@@ -11,7 +11,7 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-    searchText: ''
+    searchText: 'soccer'
   }
 }
 
