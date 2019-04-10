@@ -15,6 +15,7 @@ class Header extends Component {
                 <Link to="/soccer"><li>Soccer</li></Link>
                 <Link to="/hiking"><li>Hiking</li></Link>
                 <Link to="/food"><li>Food</li></Link>
+                <Link to="/search"><li>Search</li></Link>
                 </ul>  
             </div>
         )

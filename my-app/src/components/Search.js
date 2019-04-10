@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 // import Gallery from './Gallery'
 // import apiKey from "./Config";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // const api = apiKey;
 
@@ -26,6 +26,7 @@ class Search extends Component {
     this.props.onSearch(this.state.searchText);
     // this.setState({ searchText: e.target.value })
     this.props.url.push(`/search/${this.state.searchText}`);
+    // this.props.url.go();
     e.currentTarget.reset();
   }
 
