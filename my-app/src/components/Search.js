@@ -11,21 +11,21 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-    searchText: 'fish'
+    searchText: ''
   }
 }
 
   onSearchChange = e => {
     e.preventDefault();
     this.props.onSearch(e.target.value);
-    this.setState({ searchText: e.target.value })
+    // this.setState({ searchText: e.target.value })
   }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSearch(this.state.searchText);
     this.setState({ searchText: e.target.value })
-    // this.props.url.push(`/search/${this.query.value}`);
+    this.props.history.push(`/search/${this.query.value}`);
     e.currentTarget.reset();
   }
 
