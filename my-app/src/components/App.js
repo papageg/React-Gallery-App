@@ -10,7 +10,7 @@ import Gallery from "./Gallery";
 import '../index.css';
 
 const api = apiKey;
- const url = createBrowserHistory({forceRefresh:true});
+ const url = createBrowserHistory({forceRefresh:false});
 
 class App extends Component {
 
@@ -20,7 +20,8 @@ class App extends Component {
       soccer: [],
       hiking: [],
       food: [],
-      images: []
+      images: [],
+      query: ''
     };
   }
   componentDidMount() {
@@ -34,7 +35,7 @@ class App extends Component {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
       .then(responseData => {
-        this.setState({ images: responseData.photos.photo });
+        this.setState({ images: responseData.photos.photo, query: query });
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -90,6 +91,7 @@ class App extends Component {
 
 
   render() {
+
     return (
       <BrowserRouter>
         <div>
@@ -97,14 +99,15 @@ class App extends Component {
         <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
         {/* url={url} */}
           <Switch>
-            <Route exact path="/" />
+            <Route exact path="/" render={ () => <Gallery photos={this.state.images} title={'Searched'} />} />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path="/search/:id" render={ () => <Gallery photos={this.state.images} title={':id'} />} />
+            <Route path={`/search/${this.state.query}`} render={ () => <Gallery photos={this.state.images} title={'Searched'} />} />
             <Route component={NotFound}/>
           </Switch>
           <Footer />
+          <p>{this.state.query}</p>
           </div>
       </BrowserRouter>
    );
