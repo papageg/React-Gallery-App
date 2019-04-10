@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 import Search from './Search';
 import Header from './Header';
 import Footer from './Footer';
@@ -10,7 +10,7 @@ import Gallery from "./Gallery";
 import '../index.css';
 
 const api = apiKey;
-const url = createBrowserHistory({forceRefresh:false});
+// const url = createBrowserHistory({forceRefresh:false});
 
 class App extends Component {
 
@@ -93,7 +93,8 @@ class App extends Component {
       <BrowserRouter>
         <div>
         <Header/>
-        <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
+        <Search  onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
+        {/* url={url} */}
           <Switch>
             <Route exact path="/" />
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
