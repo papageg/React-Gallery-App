@@ -96,18 +96,26 @@ class App extends Component {
       <BrowserRouter>
         <div>
         <Header/>
-        <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
+        {/* <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/> */}
         {/* url={url} */}
           <Switch>
-            <Route exact path="/" render={ () => <Gallery photos={this.state.images} title={'Searched'} />} />
+            <Route exact path="/" render={ () =>
+            <div>
+              <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
+              <Gallery photos={this.state.images} title={'Searched'} />
+             </div>
+             } 
+
+             />
+
             <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
             <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
             <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
-            <Route path={`/search/${this.state.query}`} render={ () => <Gallery photos={this.state.images} title={'Searched'} />} />
+            {/* <Route path={`/search/${this.state.query}`} render={ () => <Gallery photos={this.state.images} title={'Searched'} />} /> */}
             <Route component={NotFound}/>
           </Switch>
           <Footer />
-          <p>{this.state.query}</p>
+          {/* <p>{this.state.query}</p> */}
           </div>
       </BrowserRouter>
    );

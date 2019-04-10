@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Image from './Image';
 
+
+
 class Gallery extends Component {
 
+    
 
 // 24 images total
 renderImages = () => {
