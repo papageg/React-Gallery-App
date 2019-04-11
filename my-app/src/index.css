@@ -9,6 +9,10 @@ body {
     margin: 52px 0 40px;
     text-transform: capitalize;
   }
+
+  .header-inline-main {
+    display: inline;
+  }
   
   ul {
     list-style-type: none;
@@ -53,6 +57,7 @@ body {
   .main-nav a {
     display: block;
     background: #438bbd;
+    margin: 3px;
     border-radius: 3px;
     padding: 5px;
     color: #fff;

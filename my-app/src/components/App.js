@@ -100,17 +100,37 @@ class App extends Component {
         {/* url={url} */}
           <Switch>
             <Route exact path="/" render={ () =>
-            <div>
-              <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
-              <Gallery photos={this.state.images} title={'Searched'} />
-             </div>
+                <div>
+                  <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/>
+                  <h2>{this.state.query} Images</h2>
+                  <Gallery photos={this.state.images} title={'Searched'} />
+                </div>
+              } 
+             />
+
+            <Route path="/soccer" render={ () =>
+                <div>
+                  <h2>Soccer Photos</h2>
+                  <Gallery photos={this.state.soccer} title={'Soccer'} />
+                </div>
+              }   
+            /> 
+            <Route path="/hiking" render={ () =>
+              <div>
+                <h2>Hiking Photos</h2>
+                <Gallery photos={this.state.hiking} title={'Hiking'} />
+              </div>
+            } 
+
+             />
+            <Route path="/food" render={ () =>
+              <div>
+                <h2>Soccer Photos</h2>
+                <Gallery photos={this.state.food} title={'Food'} />
+              </div>
              } 
 
              />
-
-            <Route path="/soccer" render={ () => <Gallery photos={this.state.soccer} title={'Soccer'} />} /> 
-            <Route path="/hiking" render={ () => <Gallery photos={this.state.hiking} title={'Hiking'} />} />
-            <Route path="/food" render={ () => <Gallery photos={this.state.food} title={'Food'} />} />
             {/* <Route path={`/search/${this.state.query}`} render={ () => <Gallery photos={this.state.images} title={'Searched'} />} /> */}
             <Route component={NotFound}/>
           </Switch>
