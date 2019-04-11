@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Image from './Image';
 
 
-
+//The gallery wil create each image and push them then generate a new image and do this till it matchs the length of photos.length which would be 24 images
 class Gallery extends Component {
 
     
@@ -11,8 +11,6 @@ class Gallery extends Component {
 renderImages = () => {
     let pictures = [];
     let photos = this.props.photos;
-
-    //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
 
     for (let i = 0; i < photos.length; i++) {
         pictures.push(
@@ -28,6 +26,7 @@ renderImages = () => {
     return pictures;
 }
 
+//The render below will take the image created and display to the screen up to 24 images
     render() {
         return (
             <div className="photo-container">
@@ -38,10 +37,5 @@ renderImages = () => {
         );
     }
 }
-
-// A single Gallery component that can be reused to 
-//display the sets of images for each of the three 
-//topic categories you wish to display, like sunsets, 
-//terfalls and rainbows, for example.
 
 export default Gallery;

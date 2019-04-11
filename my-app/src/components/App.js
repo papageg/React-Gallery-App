@@ -1,3 +1,4 @@
+// Below are all my imports to render different aspects of the site
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
@@ -9,11 +10,16 @@ import NotFound from "./NotFound";
 import Gallery from "./Gallery";
 import '../index.css';
 
-const api = apiKey;
- const url = createBrowserHistory({forceRefresh:false});
+// Below is my api which needs to be set up in the README of my github repo
+  const api = apiKey;
 
+//Url controlls the history of the url of the page so that it does not refresh when page is rendered but creates a history.  
+  const url = createBrowserHistory({forceRefresh:false});
+
+//Below is the class component holding the structure of the webpage
 class App extends Component {
 
+//The state holds all the information/images being generated from the api
   constructor() {
     super();
     this.state = {
@@ -24,6 +30,8 @@ class App extends Component {
       query: ''
     };
   }
+
+//The component did mount is here to load when it renders one of the components 
   componentDidMount() {
     this.soccerSearch();
     this.hikingSearch();
@@ -31,6 +39,7 @@ class App extends Component {
     this.imageArray();
   }
 
+//Below imageArray,foodSearch,hikingSearch,soccerSearch all will grab images from the api and generate 24 photos by changing the state and inputing the images
     imageArray = (query) => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => response.json())
@@ -41,20 +50,6 @@ class App extends Component {
         console.log('Error fetching and parsing data', error);
       });
   }
-
-
-//   querySearch = (query) => {
-//     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
-//     .then(response => response.json())
-//       .then(responseData => {
-//           this.setState({ 
-//             search: responseData.photos.photo
-//           });
-//       })
-//       .catch(error => {
-//           console.log('Error fetching and parsing data', error);
-//       });
-// }
 
   soccerSearch = () => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=soccer&per_page=24&format=json&nojsoncallback=1`)
@@ -89,15 +84,13 @@ class App extends Component {
       });
   }
 
-
+//Below is how to page will render and display on the screen
   render() {
 
     return (
       <BrowserRouter>
         <div>
         <Header/>
-        {/* <Search url={url} onSearch={this.imageArray} image={this.state.search} query={this.state.query}/> */}
-        {/* url={url} */}
           <Switch>
             <Route exact path="/" render={ () =>
                 <div>
@@ -131,11 +124,9 @@ class App extends Component {
              } 
 
              />
-            {/* <Route path={`/search/${this.state.query}`} render={ () => <Gallery photos={this.state.images} title={'Searched'} />} /> */}
             <Route component={NotFound}/>
           </Switch>
           <Footer />
-          {/* <p>{this.state.query}</p> */}
           </div>
       </BrowserRouter>
    );
